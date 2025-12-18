@@ -30,7 +30,7 @@ export const support2 = [
         cover: imgUrl('bg05.jpg')
     },
     {
-        title: "24 / 7 无间断服务",
+        title: "24/7无间断服务",
         message: "稳定的7天24小时不间断技术支持,高素质的客户服务, 第一时间为您解决问题。技术安全人员周期性的维护与检测,持续进行游戏革新,全方位确保质量的稳定与安全。",
         cover: imgUrl('bg06.jpg')
     },
@@ -40,7 +40,7 @@ export const support2 = [
         cover: imgUrl('bg07.jpg')
     },
     {
-        title: "信赖可靠,安全无虞",
+        title: "信赖可靠安全无虞",
         message: "强大的技术与维运团队,保证系统最佳运行状态,高规格数据加密,确保所有接入的平台产品与解决方案都是完全可信赖,机密与安全。并支持全站HTTP2协议,提供安全快速的网页服务。",
         cover: imgUrl('bg08.jpg')
     }

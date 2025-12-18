@@ -5,10 +5,10 @@
 
         <div class="game-info">
             <div class="title">
-                游戏<span>GAME</span>
+                {{ $t('游戏') }}<span>GAME</span>
             </div>
             <div class="text">
-                提供全球彩票投注与实时开奖信息,公正、公开同步各地官方彩票开奖结果。延伸多种趣味、耐玩的动态投注玩法,包含官方/信用类型,牛牛、梭哈、龙虎斗等。完整的开奖历史与投注记录资讯,提供玩家即时分析。另有多款快开彩票,一秒开奖,丰富营运商的平台,提升玩家黏着。
+                {{ $t('游戏message') }}
             </div>
         </div>
 
@@ -18,11 +18,11 @@
             <div class="game-list">
                 <div class="top" :style="{ backgroundImage: `url(${imgUrl(GameList[index].bg)})` }">
                     <img :src="imgUrl(GameList[index].cover)" />
-                    <p>{{ GameList[index].name }}</p>
+                    <p>{{ $t(GameList[index].name) }}</p>
                 </div>
 
                 <div class="bottom">
-                    {{ GameList[index].mesage }}
+                    {{ $t(GameList[index].name + 'message') }}
                 </div>
             </div>
 
@@ -49,6 +49,7 @@ const prev = () => {
 .game {
     background: url('@/assets/Image/game/game_bg.jpg') right top / cover no-repeat rgb(45, 45, 45);
     background-size: cover;
+    min-height: 100vh;
     height: 100vh;
     position: relative;
     display: flex;
@@ -161,7 +162,7 @@ const prev = () => {
     .game {
         flex-direction: column;
         align-items: center;
-        padding: 70px 40px;
+        padding: 70px 16px;
 
         .game-info {
             width: 100%;
@@ -176,7 +177,7 @@ const prev = () => {
 
             .text {
                 line-height: 150%;
-                font-size: 14px;
+                font-size: 12px;
             }
         }
 
@@ -217,9 +218,8 @@ const prev = () => {
                 }
 
                 .bottom {
-                    padding: 20px 20px 20%;
-                    height: auto;
-                    font-size: 14px;
+                    padding: 12px;
+                    font-size: 12px;
                 }
             }
         }

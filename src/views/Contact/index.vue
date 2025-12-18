@@ -4,53 +4,89 @@
             <h1 class="title">
                 <p>CONTACT</p>
             </h1>
+
             <div class="list-block">
 
+                <!-- 联系方式 -->
                 <ul class="list-contact list">
-                    <li class="list-item" v-for="item in 4">
-                        <img :src="imgUrl(item)">
-                        <span>1234567890</span>
+
+                    <li class="list-item">
+                        <span class="label">Email :</span>
+                        <span class="value">
+                            service@shicai-intl.com<br />
+                            xinl6367@gmail.com
+                        </span>
+                    </li>
+
+                    <li class="list-item">
+                        <span class="label">Teams :</span>
+                        <span class="value">
+                            ibarradhon@gmail.com
+                        </span>
+                    </li>
+
+                    <li class="list-item">
+                        <span class="label">Telegram :</span>
+                        <span class="value">
+                            @gwworld888
+                        </span>
+                    </li>
+
+                </ul>
+
+                <!-- 菜单 -->
+                <ul class="list-menu list">
+                    <li
+                        class="list-item"
+                        v-for="item in isMobile ? mobileNav : pcNav"
+                        :key="item.label"
+                        @click="emits('changeMenu', item.pages[0])"
+                    >
+                        {{ $t(item.label) }}
                     </li>
                 </ul>
 
-                <ul class="list-menu list">
-                    <li class="list-item" @click="emits('changeMenu',item.pages[0])" v-for="item in isMobile ? mobileNav : pcNav">{{ item.label }}</li>
-                </ul>
             </div>
         </div>
     </div>
-
 </template>
-<script setup>
 
+<script setup>
 import { computed, ref, onMounted, onUnmounted } from 'vue';
-const emits = defineEmits(['changeMenu'])
-const width = ref(window.innerWidth)
+
+const emits = defineEmits(['changeMenu']);
+
+const width = ref(window.innerWidth);
+
 const updateWidth = () => {
-    width.value = window.innerWidth
-}
+    width.value = window.innerWidth;
+};
+
 onMounted(() => {
-    window.addEventListener('resize', updateWidth)
-})
+    window.addEventListener('resize', updateWidth);
+});
+
 onUnmounted(() => {
-    window.removeEventListener('resize', updateWidth)
-})
-const isMobile = computed(() => width.value <= 956)
+    window.removeEventListener('resize', updateWidth);
+});
+
+const isMobile = computed(() => width.value <= 956);
+
 const mobileNav = [
     { label: "首页", pages: [0] },
     { label: "游戏", pages: [1] },
     { label: "产品优势", pages: [2, 3] },
     { label: "关于我们", pages: [4] },
-]
+];
+
 const pcNav = [
     { label: "首页", pages: [0] },
     { label: "游戏", pages: [1] },
     { label: "产品优势", pages: [2, 3, 4] },
     { label: "关于我们", pages: [5] },
-]
-const imgUrl = (name) => new URL(`../../assets/Image/contact/${name}.png`, import.meta.url).href;
-const menuArr = ['首页', '游戏', '产品优势', '关于我们']
+];
 </script>
+
 <style scoped lang="scss">
 .contact {
     height: 100vh;
@@ -72,8 +108,8 @@ const menuArr = ['首页', '游戏', '产品优势', '关于我们']
             position: relative;
             font-size: 5.5vw;
 
-            &::before {
-                left: 0;
+            &::before,
+            &::after {
                 content: '';
                 position: absolute;
                 width: 30%;
@@ -82,14 +118,12 @@ const menuArr = ['首页', '游戏', '产品优势', '关于我们']
                 top: 50%;
             }
 
+            &::before {
+                left: 0;
+            }
+
             &::after {
                 right: 0;
-                content: '';
-                position: absolute;
-                width: 30%;
-                height: 1px;
-                background: rgba(255, 255, 255, 0.34);
-                top: 50%;
             }
         }
 
@@ -105,40 +139,59 @@ const menuArr = ['首页', '游戏', '产品优势', '关于我们']
                 flex-direction: column;
                 justify-content: space-around;
                 align-items: center;
+            }
 
-                .list-item {
-                    color: #fff;
-                    display: flex;
-                    align-items: center;
-                    gap: 20px;
-                    cursor: pointer;
-                }
+            .list-item {
+                width: 300px;
+                display: flex;
+                gap: 12px;
+                color: #fff;
+                cursor: pointer;
+            }
+
+            .label {
+                white-space: nowrap;
+                opacity: 0.8;
+            }
+
+            .value {
+                word-break: break-all; // ⭐ 邮箱自动换行
             }
 
             .list-contact {
                 border-right: 1px solid #fff;
+                padding-right: 20px;
             }
 
             .list-menu {
                 border-left: 1px solid #fff;
-
+                padding-left: 20px;
             }
         }
     }
-
 }
 
+/* 📱 小屏优化 */
 @media (max-width: 850px) {
     .contact {
+        padding: 60px 20px;
+
         .content {
             .list-block {
+                flex-direction: column;
+
                 .list-contact {
-                    border: none;
+                    border-right: none;
+                    margin-bottom: 30px;
                 }
 
                 .list-menu {
                     display: none;
-                    border-left: 1px solid #fff;
+                }
+
+                .list-item {
+                    flex-direction: column; // ⭐ 上下排列
+                    gap: 6px;
                 }
             }
         }

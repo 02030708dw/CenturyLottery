@@ -6,16 +6,16 @@
         <template v-if="!isMobile">
             <div class="support-item" v-for="(item, index) in data" :key="index"
                 :style="{ backgroundImage: `url(${item.cover})` }">
-                <p class="title">{{ item.title }}</p>
-                <p class="text">{{ item.message }}</p>
+                <p class="title">{{ $t(item.title) }}</p>
+                <p class="text">{{ $t(item.title + 'message') }}</p>
             </div>
         </template>
 
         <div class="slide-wrapper" v-else :style="slideStyle">
             <div class="support-item mobile" v-for="(item, index) in data" :key="index"
                 :style="{ backgroundImage: `url(${item.cover})` }">
-                <p class="title">{{ item.title }}</p>
-                <p class="text">{{ item.message }}</p>
+                <p class="title">{{ $t(item.title) }}</p>
+                <p class="text">{{ $t(item.title + 'message') }}</p>
             </div>
         </div>
 

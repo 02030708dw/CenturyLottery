@@ -2,7 +2,7 @@
 
     <Header :currentPage="currentPage" @changeMenu="goToPage($event)" />
 
-    <Home />
+    <Home :isMobile="isMobile"/>
     <Game />
     <Support />
     <About />

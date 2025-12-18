@@ -1,19 +1,22 @@
 <template>
     <div class="home">
-        <p class="home-title">百款彩票 一秒开号</p>
+        <p class="home-title" v-if="!isMobile">{{ $t('百款彩票一秒开号') }}</p>
         <ul class="lottery-list">
             <li class="lottery-item" v-for="item in LotteryList">
-                <p class="item-name">{{ item }}</p>
-                <div class="item-btn">
-                    <div class="offical">官方彩</div>
-                    <div class="local">秒开彩</div>
-                    <div class="video"></div>
+
+                <p class="item-name" :style="{ fontSize: locale == 'cn' ? '30px' : '20px' }">{{ $t(item) }}</p>
+                <div class="item-btn" :style="{ fontSize: locale == 'cn' ? '16px' : '12px' }">
+                    <div class="offical">{{ $t('官方彩') }}</div>
+                    <div class="local">{{ $t('秒开彩') }}</div>
                 </div>
             </li>
         </ul>
     </div>
 </template>
 <script setup>
+import { useI18n } from 'vue-i18n';
+const props = defineProps(['isMobile'])
+const { locale } = useI18n()
 const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '骰宝', '快3', '泰国彩', '龙虎斗', '3D/P3', '11选5', '鱼虾蟹']
 </script>
 <style scoped lang="scss">
@@ -24,7 +27,7 @@ const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '�
 
     .home-title {
         text-align: center;
-        font-size: 56px;
+        font-size: 40px;
         font-weight: 600;
         background: linear-gradient(to bottom, #b3b3b3 0%, #efefef 50%, #b3b3b3 51%, #fff 100%);
         background-clip: text;
@@ -49,6 +52,7 @@ const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '�
             border: 1px solid rgba(255, 255, 255, 0.4);
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             align-items: center;
             background-color: rgba(26, 26, 26, 0.8);
             color: #fff;
@@ -67,6 +71,7 @@ const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '�
             .item-btn {
                 display: flex;
                 width: 95%;
+                justify-content: space-around;
 
                 &>div {
                     margin: 0 3px;
@@ -92,25 +97,6 @@ const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '�
                 }
             }
 
-            .video {
-                width: 20%;
-                background: #231815;
-                border: 1px solid #fff;
-                box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2), 0 0 5px 3px rgba(255, 255, 255, 0.2) inset;
-                position: relative;
-
-                &::after {
-                    content: '';
-                    position: absolute;
-                    width: 0;
-                    height: 0;
-                    border: 10px solid;
-                    left: 50%;
-                    top: 50%;
-                    border-color: transparent transparent transparent #ff0000;
-                    transform: translate(-15%, -50%) scaleY(0.6);
-                }
-            }
         }
     }
 }
@@ -134,7 +120,6 @@ const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '�
 
                 .item-name {
                     font-size: 18px;
-
                 }
 
                 .item-btn {
@@ -146,10 +131,8 @@ const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '�
                         text-align: center;
                         height: 20px;
                         line-height: 20px;
-                        border-radius: 0;
                         cursor: pointer;
                         border-radius: 3px;
-
                     }
 
                     .offical {
@@ -173,6 +156,7 @@ const LotteryList = ['时时彩', 'PK10', '番摊', '越南彩', '六合彩', '�
                         box-shadow: none;
                         background-color: #ff0000;
                         border: none;
+
                         &::after {
                             border-color: transparent transparent transparent #fff;
                         }

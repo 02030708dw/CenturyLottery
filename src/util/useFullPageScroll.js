@@ -1,7 +1,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 export function useFullPageScroll(sectionCount = 1) {
-  const currentPage = ref(0)        
+  const currentPage = ref(0)
   let isScrolling = false
   let touchStartY = 0
 
@@ -32,38 +32,27 @@ export function useFullPageScroll(sectionCount = 1) {
     }
   }
 
-  const touchStartHandler = (e) => {
-    touchStartY = e.touches[0].clientY
-  }
-
-  const touchEndHandler = (e) => {
-    if (isScrolling) return
-    const diff = touchStartY - e.changedTouches[0].clientY
-    if (Math.abs(diff) < 30) return
-
-    if (diff > 0) {
-      scrollToPage(currentPage.value + 1)
-    } else {
-      scrollToPage(currentPage.value - 1)
-    }
-  }
-
   onMounted(() => {
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('wheel', wheelHandler, { passive: false })
-    window.addEventListener('touchstart', touchStartHandler, { passive: true })
-    window.addEventListener('touchend', touchEndHandler, { passive: true })
+    // 检测是否有触摸事件支持，简单判断移动端
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+
+    if (!isTouchDevice) {
+      // 桌面端：整页滚动
+      document.body.style.overflow = 'hidden'
+      window.addEventListener('wheel', wheelHandler, { passive: false })
+    } else {
+      // 手机端：允许正常滚动
+      document.body.style.overflow = ''
+    }
   })
 
   onUnmounted(() => {
     document.body.style.overflow = ''
     window.removeEventListener('wheel', wheelHandler)
-    window.removeEventListener('touchstart', touchStartHandler)
-    window.removeEventListener('touchend', touchEndHandler)
   })
 
   return {
     currentPage,
-    goToPage,  
+    goToPage,
   }
 }

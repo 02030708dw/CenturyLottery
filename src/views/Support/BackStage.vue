@@ -2,10 +2,10 @@
     <div class="back-stage">
         <div class="text-block">
 
-            <p class="text_block--sub">强大的后台系统</p>
-            <div class="text_block--tit">完整后台报表分析<br>完善风险控管功能</div>
+            <p class="text_block--sub">{{ $t('强大的后台系统') }}</p>
+            <div class="text_block--tit">{{ $t('完整后台报表分析') }}<br>{{ $t('完善风险控管功能') }}</div>
             <div class="text_block--txt">
-                世彩拥有强大的后台系统，除了提供全方位分析核心运营资料，协助您实时掌控运营数据外，还可锁定用户的赔付上限，或是封锁下注金额过高之玩法。另外能针对玩法设定赔率，并启用自动控赔设置，在投注金额过高时以达成自动降赔，协助您把风险控制在最低范围，轻易达成最高利润。
+                {{ $t('BackStageMessage') }}
             </div>
         </div>
         <div class="img-block">
@@ -15,8 +15,8 @@
             <ul class="img_block_list">
                 <li class="list-item" v-for="item in BackStageList">
                     <img :src="item.cover">
-                    <p class="item-title">{{ item.title }}</p>
-                    <p class="item-message">{{ item.message }}</p>
+                    <p class="item-title">{{ $t(item.title) }}</p>
+                    <p class="item-message">{{ $t(item.title + 'message') }}</p>
                 </li>
             </ul>
         </div>
@@ -32,7 +32,7 @@ import { BackStageList } from "./data.js";
     background-size: cover;
     display: flex;
     padding: 140px 40px 70px;
-    gap: 70px;
+    gap: 10px;
 
     .text-block {
         padding: 18px;
@@ -92,18 +92,16 @@ import { BackStageList } from "./data.js";
         justify-content: space-between;
 
         .img_block_list {
-            width: 100%;
-            height: 143px;
+            min-height: 143px;
             display: flex;
             justify-content: space-between;
+            gap: 10px;
 
             .list-item {
-                width: 150px;
-                height: 100%;
+                width: 160px;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                justify-content: space-around;
                 color: #fff;
                 font-size: 12px;
 
@@ -114,7 +112,14 @@ import { BackStageList } from "./data.js";
                 }
 
                 .item-title {
+                    white-space: nowrap;
                     font-size: 14px;
+                    margin-top: 10px;
+
+                }
+
+                .item-message {
+                    margin-top: 10px;
                 }
             }
         }
@@ -133,7 +138,7 @@ import { BackStageList } from "./data.js";
             width: 100%;
 
             .text_block--txt {
-                font-size: 14px;
+                font-size: 12px;
             }
         }
 
@@ -160,14 +165,19 @@ import { BackStageList } from "./data.js";
                     img {
                         width: 55px;
                         height: 55px;
+                        margin-right: 20px;
                     }
 
                     .item-title {
-                        width: 100px;
+                        margin-top: 0;
+                        width: 100%;
+                        font-size: 10px;
                     }
 
                     .item-message {
-                        width: 140px;
+                        font-size: 10px;
+                        margin-top: 0;
+                        width: 100%;
                     }
                 }
             }
