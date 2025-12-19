@@ -12,7 +12,9 @@
                     {{ $t(item.label) }}
                 </li>
             </ul>
-            <div class="link-btn">{{ $t('试玩') }}</div>
+            <div class="link-btn">
+                <a href="https://original.gw123.online//login/thirdparty/266-4b6?op=web&thirdpartyUserId=1688735468461">{{ $t('试玩') }}</a>
+            </div>
             <div class="lang" @click.stop="toggleLang">
                 <span>{{ currentLang.label }}</span>
                 <ul class="lang-list" v-show="showLang">
@@ -180,6 +182,11 @@ watch(locale,(newvalue)=>{
             border: 1px solid #fff000;
             border-radius: 50px;
             box-shadow: 0 0 3px 2px #8a6f12, 0 0 7px 5px rgba(116, 80, 25, 0.7), 0 0 3px 2px #8a6f12 inset, 0 0 7px 5px rgba(116, 80, 25, 0.7) inset;
+
+            a{
+                color: #fff;
+                text-decoration: none;
+            }
         }
 
         .lang {
