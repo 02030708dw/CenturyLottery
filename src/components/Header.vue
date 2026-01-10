@@ -13,7 +13,7 @@
                 </li>
             </ul>
             <div class="link-btn">
-                <a href="https://original.gw123.online//login/thirdparty/266-4b6?op=web&thirdpartyUserId=1688735468461">{{ $t('试玩') }}</a>
+                <a href="https://original.gw1238.online//login/thirdparty/266-4b6?op=web&thirdpartyUserId=1688735468461">{{ $t('试玩') }}</a>
             </div>
             <div class="lang" @click.stop="toggleLang">
                 <span>{{ currentLang.label }}</span>
