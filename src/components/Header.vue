@@ -13,7 +13,7 @@
                 </li>
             </ul>
             <div class="link-btn">
-                <a href="https://www.baidu.com/">{{ $t('试玩') }}</a>
+                <a :href="URL">{{ $t('试玩') }}</a>
             </div>
             <div class="lang" @click.stop="toggleLang">
                 <span>{{ currentLang.label }}</span>
@@ -31,6 +31,7 @@
 import { ref, computed, onMounted, onUnmounted,watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
+const URL = ref('https://www.baidu.com/')
 const props = defineProps(['currentPage'])
 const emits = defineEmits(['changeMenu'])
 
