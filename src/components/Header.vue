@@ -16,7 +16,7 @@
           {{ $t(item.label) }}
         </li>
       </ul>
-      <div class="link-btn">
+      <div class="link-btn" @click="goTrial">
         <a :href="URL">{{ $t("试玩") }}</a>
       </div>
       <div class="lang" @click.stop="toggleLang">
@@ -39,19 +39,24 @@
 import { ref, computed, onMounted, onUnmounted, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
-const URL = ref(
-  "https://original.gw1238.online//login/thirdparty/266-4b6?op=web&thirdpartyUserId=1688735468462"
-);
+const URL = ref(null);
 const props = defineProps(["currentPage"]);
 const emits = defineEmits(["changeMenu"]);
 
 const { locale } = useI18n();
+
 function changeURL() {
   // 时间戳
   const timestamp = new Date().getTime();
   return (URL.value = `https://original.gw1238.online//login/thirdparty/266-4b6?op=web&thirdpartyUserId=${timestamp}`);
 }
-changeURL();
+const goTrial = () => {
+  changeURL();
+  window.location.href = URL.value;
+  // 如果你想新窗口打开，用这行替换上面那行：
+  // window.open(URL.value, "_blank");
+};
+
 const width = ref(window.innerWidth);
 
 const updateWidth = () => {
