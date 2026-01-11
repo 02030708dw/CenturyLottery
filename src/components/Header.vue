@@ -31,7 +31,7 @@
 import { ref, computed, onMounted, onUnmounted,watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 
-const URL = ref('https://www.baidu.com/')
+const URL = ref('https://original.gw1238.online//login/thirdparty/266-4b6?op=web&thirdpartyUserId=1688735468461')
 const props = defineProps(['currentPage'])
 const emits = defineEmits(['changeMenu'])
 
